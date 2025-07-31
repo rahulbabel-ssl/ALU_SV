@@ -112,4 +112,5 @@ oflow_set_only_arithmetic_assert: assert property(oflow_set_only_arithmetic)
 
 cmp_out_assert: assert property(cmp_output_check)
     else $error("Comparator output incorrect for CMP");
-  `endif
+endmodule   
+`endif
