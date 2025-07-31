@@ -1,23 +1,23 @@
 `include "defines.svh"
 class generator;
 
-    transaction blueprint;
+    transaction trans;
     mailbox #(transaction) mbx_gd;
 
     function new( mailbox #(transaction) mbx_gd );
         this.mbx_gd = mbx_gd;
-        blueprint = new();
+        trans = new();
     endfunction
 
     task start();
         for( int i = 0; i < `no_of_trans; i++ ) begin
-            if(blueprint.randomize()) begin
-                mbx_gd.put(blueprint.copy());
+            if(trans.randomize()) begin
+                mbx_gd.put(trans.copy());
                 $display("\n----------------------------------------------------- Randomised values --------------------------------------------------------------------- \n");
-                if(blueprint.mode)
-                    $display("\n Time : %t | CE = %b | MODE = %b | INP_VALID = %b | CIN = %b | OPA = %d | OPB = %d \n",$time,blueprint.ce,blueprint.mode,blueprint.inp_valid,blueprint.cin,blueprint.opa,blueprint.opb);
+                if(trans.mode)
+                    $display("\n Time : %t | CE = %b | MODE = %b | INP_VALID = %b | CIN = %b | OPA = %d | OPB = %d \n",$time,trans.ce,trans.mode,trans.inp_valid,trans.cin,trans.opa,trans.opb);
                 else
-                    $display("\n Time : %t | CE = %b | MODE = %b | INP_VALID = %b | CIN = %b | OPA = %b | OPB = %b \n",$time,blueprint.ce,blueprint.mode,blueprint.inp_valid,blueprint.cin,blueprint.opa,blueprint.opb);
+                    $display("\n Time : %t | CE = %b | MODE = %b | INP_VALID = %b | CIN = %b | OPA = %b | OPB = %b \n",$time,trans.ce,trans.mode,trans.inp_valid,trans.cin,trans.opa,trans.opb);
             end
             else begin
                     $error(" Generator randomization failed ");
