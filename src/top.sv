@@ -38,8 +38,8 @@ module top( );
             .CLK(clk),
             .RST(rst)
            );
-
-           test tb;
+	assertion dut_assertion(clk,rst,intf_alu.ce,intf_alu.mode,intf_alu.cmd,intf_alu.inp_valid,intf_alu.opa,intf_alu.opb,intf_alu.cin,intf_alu.res);
+	   test tb;  
   initial
    begin
  tb = new(intf_alu ,intf_alu ,intf_alu);
